@@ -19,7 +19,6 @@ public class FeedServiceImpl implements FeedService {
 	
 	@Override
 	public Feed create(Feed feed) {
-		
 		return adDAO.save(feed);
 	}
 

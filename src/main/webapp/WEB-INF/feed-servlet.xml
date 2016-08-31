@@ -18,8 +18,9 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx-2.0.xsd ">
   
-    <bean id="jacksonObjectMapper" class="com.fasterxml.jackson.databind.ObjectMapper" />
-	<bean
+    <bean id="jacksonObjectMapper" class="com.fasterxml.jackson.databind.ObjectMapper"/>
+      
+	<bean 
 	    class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
 	    <property name="targetObject" ref="jacksonObjectMapper" />
 	    <property name="targetMethod" value="configure" />

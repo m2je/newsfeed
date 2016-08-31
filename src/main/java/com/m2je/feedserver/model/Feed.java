@@ -5,15 +5,17 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotBlank;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.m2je.feedserver.util.JacksonUtil;
 
 @Table(name="feed")
 @Entity
@@ -26,9 +28,10 @@ public class Feed implements Serializable {
 	private Long id;
 	private String content;
 	private Date publishDate;
+	
 	@Id
 	@Column(name="id")
-	@NotBlank
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
@@ -46,7 +49,8 @@ public class Feed implements Serializable {
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name="publish_date")
-	@JsonIgnore
+	@JsonSerialize(using = JacksonUtil.JacksonDateSerilizer.class)
+    @JsonDeserialize(using = JacksonUtil.JacksonDateDeserilizer.class)
 	public Date getPublishDate() {
 		return publishDate;
 	}
