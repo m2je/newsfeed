@@ -24,7 +24,6 @@ public class Feed implements Serializable {
 	 */
 	private static final long serialVersionUID = -4845046400389935354L;
 	private Long id;
-	private Integer duration;
 	private String content;
 	private Date publishDate;
 	@Id
@@ -35,13 +34,6 @@ public class Feed implements Serializable {
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	@NotNull
-	public Integer getDuration() {
-		return duration;
-	}
-	public void setDuration(Integer duration) {
-		this.duration = duration;
 	}
 	@NotNull
 	@Column(name="content")

@@ -27,7 +27,7 @@ public class FeedServiceImpl implements FeedService {
 
 	@Override
 	public List<Feed> list() {
-		return adDAO.findByPartnerId( new PageRequest(0, 10, new Sort(new Order(Direction.DESC,"publishDate")))).getContent();
+		return adDAO.find( new PageRequest(0, 10, new Sort(new Order(Direction.DESC,"publishDate")))).getContent();
 	}
 
 }
