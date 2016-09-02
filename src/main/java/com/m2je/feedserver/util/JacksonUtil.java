@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 
 public class JacksonUtil {
 
-	public static final String dateFormatStr = "MM/dd/yyyy";
+	public static final String dateFormatStr = "yyyy-MM-dd";
 	
 	public static final SimpleDateFormat format=new SimpleDateFormat(dateFormatStr);
 	

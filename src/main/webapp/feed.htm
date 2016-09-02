@@ -1,181 +1,110 @@
-<html>
+<html ng-app='myApp'>
 <head>
 <title>feeds</title>
- 
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.js"></script>
- <style>
-		label {
-			float: left;
-			width: 100px;
-		}
-		textarea{
-			width: 200px;
-			height: 150px;
-		}
-		input {
-		width: 150px;
-		}
-		
-		table {
-	   			border-collapse: collapse;
-		}
-	
-		table, th, td {
-	    	border: 1px solid black;
-		}
-		table {
-		    width: 100%;
-		}
-		
-		th {
-		    height: 50px;
-		}
-		
-		th {
-    		text-align: left;
-		}
-		
-		td {
-		    height: 50px;
-		    vertical-align: bottom;
-		}
-
-		th, td {
-		    padding: 15px;
-		    text-align: left;
-		}
-
-		th, td {
-		    border-bottom: 1px solid #ddd;
-		}
-	
-		tr:hover {background-color: #f5f5f5}
-		
-		tr:nth-child(even) {background-color: #f2f2f2}
-		
-		th {
-		    background-color: #4CAF50;
-		    color: white;
-		}
-
-		#main_panel { 
-    width: 1000px;
-    margin: 0 auto;
-}
-#left_panel    {
-    width: 400px;
-    height: 400px;
-    
-    float: left;
-}
-
-#rigt_panel  {
-    width: 600px;
-    background: #ffffff;
-    height: 400px;
-    margin-left: 200px;
-}
-</style>		
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://code.angularjs.org/1.4.8/angular-route.js"></script>   
 </head>
  
+ <script type="text/javascript">
+ var app = angular.module('app', ['ngTouch', 'ui.grid']);
+ app.controller('MainCtrl', ['$scope', function ($scope) {
+     $scope.myData = [{
+         "firstName": "Cox",
+         "lastName": "Carney",
+         "company": "Enormo",
+         "employed": true
+     }, {
+         "firstName": "Lorraine",
+         "lastName": "Wise",
+         "company": "Comveyer",
+         "employed": false
+     }, {
+         "firstName": "Nancy",
+         "lastName": "Waters",
+         "company": "Fuelton",
+         "employed": false
+     }];
+ }]);
+ 
+ (function () {
+	    angular.module('ui.grid')
+	      .service('FeedsService', ['$http', FeedsService]);
+
+	    function FeedsService($http) {
+	        var self = this;
+	        var baseUrl = '/api/';
+	        
+	        var objectName = 'feeds';
+	        self.readAll = function () {
+	            return $http({
+	                method: 'GET',
+	                url: baseUrl + objectName
+	            }).then(function (response) {
+	                return response.data;
+	            });
+	        };
+	        self.readOne = function (id) {
+	            return $http({
+	                method: 'GET',
+	                url: baseUrl + objectName + '/' + id
+	            }).then(function (response) {
+	                return response.data;
+	            });
+	        };
+	        self.create = function (data) {
+	            return $http({
+	                method: 'POST',
+	                url: baseUrl + objectName,
+	                data: data,
+	                params: {
+	                    returnObject: true
+	                }
+	            }).then(function (response) {
+	                return response.data;
+	            });
+	        };
+	        self.update = function (id, data) {
+	            return $http({
+	                method: 'PUT',
+	                url: baseUrl + objectName + '/' + id,
+	                data: data
+	            }).then(function (response) {
+	                return response.data;
+	            });
+	        };
+	        self.delete = function (id) {
+	            return $http({
+	                method: 'DELETE',
+	                url: baseUrl + objectName + '/' + id
+	            });
+	        };
+	    }
+	}());
+ 
+ app.controller('MainCtrl', ['FeedsService', '$scope', function (FeedsService, $scope) {
+	    $scope.gridOptions = {
+	        excludeProperties: '__metadata',
+	    };
+
+	    $scope.load = function () {
+	        FeedsService.readAll().then(function (response) {
+	            $scope.gridOptions.data = response.data;
+	        });
+	    }
+
+	    $scope.load();
+	}]);
+ </script>
 <body>
  
-<script type="text/javascript">
- 
-$(document).ready(function(){
-	$("#submit-btn").click(function() {
-	
-		$.ajax({
-			url: './api/ad',
-			contentType: 'application/json',
-			data: '  { \"partner_id\": \"'+$("input[name='partner_id']").val()+'\"'+
-			' ,  \"duration\": \"'+$("input[name='duration']").val()+'\"'+
-			' ,  \"content\": \"'+$("textarea[name='content']").val()+'\"'+
-				'}',
-			type: 'post'
-			}).done(function() {
-					
-				search();	
-			}).error( function(jqXHR, textStatus, errorThrown ){
-				alert(errorThrown);
-			});
-	});
-});
 
-$(document).ready(function(){
-	$("#find-btn").click(function() {
-		search();
-		
-	});
-});
-
-function search(){
-	$.ajax({
-		url: './api/ad?partner_id='+$("input[name='partner_id']").val(),
-		contentType: 'application/json',
-		type: 'GET',
-		success: function(result) {
-			updateContent(result);
-		}
-		}).error( function(jqXHR, textStatus, errorThrown ){
-			alert(errorThrown);
-		});
-}
-function updateContent(result){
-	var content = '<table><TR><TH>partner Id</TH><TH>duration</TH><TH>content</TH></TR>';
-	$(result).each(function(index, partner) {
-		content+="<TR><TD>"+partner.partner_id+"</TD>"+
-		"<TD>"+partner.duration+"</TD>"+
-		"<TD>"+partner.content+"</TD>"+
-		"</TR>";
-		
-		    			});
-	content+='</table>';
-	console.log(content);
-	$('.docs-content').html(content);
-}
-
-
-</script>
- 
+<div ng-app="app">
+    <div ng-controller="MainCtrl">
+        <div ui-grid="{ data: myData }" class="grid"></div>
+    </div>
+</div> 
 
  
-<div id="msgid">
-</div>
 
-  	
-<div id="main_panel" >
-		<div id="left_panel" >
-
-			<p>
-			<label >partner Id:</label>
-			<input id="partner_id" name="partner_id" type="text" value="" width="200px">
-			</p>
-			<p>
-			<label>duration:</label>
-			<input id="duration" name="duration" type="text" value="" width="200px">
-			</p>
-		
-		
-		</div>
-	<div id="right_panel">		
-		<p>
-		<label>content:</label>
-		<textarea name="content" id="content" ></textarea> 
-	
-		</p>
-	</div>
-</div>
-
-<div id="bottom_panel" align="left">
-	<p> <input type="button" id="submit-btn" value="create">
-	<input type="button" id="find-btn" value="find">
-	</p> 
-</div>
-
-<div class="docs-content">
-
-		</div>
- 
 </body>
 </html>

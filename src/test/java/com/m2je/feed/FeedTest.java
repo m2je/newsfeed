@@ -1,12 +1,10 @@
 package com.m2je.feed;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,18 +42,24 @@ public class FeedTest {
 		Feed feed = new Feed();
 		feed.setContent("Test content -->" + System.currentTimeMillis());
 		feed.setPublishDate(new Date());
-		Feed result = template.postForEntity(serverAddress+"/feeds", feed, Feed.class).getBody();
+		Feed result = template.postForEntity(serverAddress + "/feeds", feed, Feed.class).getBody();
 		Assert.assertNotNull(result);
 		Assert.assertNotNull(result.getContent());
 		Assert.assertNotNull(result.getPublishDate());
 	}
 
-	public static void main(String []args) throws Exception{
+	@Test
+	public void testList() {
 		Feed feed = new Feed();
 		feed.setContent("Test content -->" + System.currentTimeMillis());
 		feed.setPublishDate(new Date());
-		ObjectMapper m= new ObjectMapper();
-		m.setDateFormat(new SimpleDateFormat("MM-dd-yyyy"));
-		System.out.println(m.writeValueAsString(feed));
+		template.postForEntity(serverAddress + "/feeds", feed, Feed.class).getBody();
+		FeedList result = template.getForEntity(serverAddress + "/feeds", FeedList.class).getBody();
+		Assert.assertNotNull(result);
+		Assert.assertTrue(result.size() >= 1);
+		Assert.assertNotNull(result.get(0).getContent());
+		Assert.assertNotNull(result.get(0).getPublishDate());
 	}
+	
+	
 }

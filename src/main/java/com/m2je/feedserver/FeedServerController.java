@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +23,7 @@ public class FeedServerController {
 	private FeedService adService;
 	
 	@ResponseBody
+	@CrossOrigin(origins = "http://localhost:3000")
 	@RequestMapping(value="/feeds",method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public Feed create(@Valid @RequestBody(required=true) Feed ad){
@@ -29,6 +31,7 @@ public class FeedServerController {
 	}
 	
 	@ResponseBody
+	@CrossOrigin(origins = "http://localhost:3000")
 	@RequestMapping(value="/feeds",method=RequestMethod.GET)
 	@ResponseStatus(HttpStatus.CREATED)
 	public List<Feed> list(){
