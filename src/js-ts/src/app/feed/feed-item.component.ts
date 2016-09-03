@@ -7,7 +7,7 @@ import {FeedItem} from "./feed-item";
         <article class="feed-element">
             <div class="col-1">
                 <h3>{{ feedItem.content }}</h3>
-                <p class="info">{{ feedItem.publishDate }}</p>
+                <p class="info">published at: {{ feedItem.publishDate | date:'MM/dd/yyyy' }}</p>
             </div>
             
         </article>
@@ -18,7 +18,7 @@ import {FeedItem} from "./feed-item";
      h3{
          margin:0 0 10px;
          padding:0;
-         font-size:22px;
+         font-size:18px;
      }
      .info{
          color:rgba(95,95,95,.51);

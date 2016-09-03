@@ -1,29 +1,45 @@
-# Angular 2 Seed Project
+Angular2 with TypeScript and Gulp
+=================================
 
-## Description
-This repository has the goal of making seeding an Angular 2 project easy. Currently it's in heavy development, as Angular 2 isn't released yet.
+A basic Angular2 application with Gulp as build system.
 
-## Features
-dev/ folder holds TypeScript (Angular 2) code => compiled into app/ folder, bundled into bundle.js (incl. dependencies).
+Prerequisites
+-------------
 
-assets/ folder holds other assets (e.g. SCSS code) => compiled into src/ folder.
+- nodejs
+- gulp and gulp-cli
+- typings
+- typescrit
+- ts-node
 
-Bundling of TypeScript is managed via SystemJS Builder. Code compilation is managed via Gulp.
+Running
+-------
 
-## Usage
-Important: Typescript and npm has to be installed on your machine!
+Clone the repository:
 
-1: Clone repo
-```
-git clone https://github.com/mschwarzmueller/angular2-seed.git
-```
-2: Install packages
-```
-npm install
-```
-3: Start server (includes auto refreshing) and gulp watcher
-```
-npm start
-```
+> git clone https://github.com/kolorobot/angular2-typescript-gulp.git
 
-4: Visit localhost:3000 (default) if the tab hasn't opened automatically
+Navigate to `angular2-typescript-gulp` directory:
+
+> cd angular2-typescript-gulp
+
+Install dependencies:
+
+> npm install
+
+`node_modules` and `typings` directories should be created during the install.
+
+Build the project:
+
+> npm run clean & npm run build
+
+`build` directory should be created during the build
+
+> npm start
+
+The application should be displayed in the browser.
+
+Resources
+---------
+
+- A step-by-step tutorial - http://blog.codeleak.pl/2016/03/quickstart-angular2-with-typescript-and.html

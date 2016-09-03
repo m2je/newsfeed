@@ -1,5 +1,4 @@
-/.idea
-/node_modules
-/app
-/src
-/typings
+.idea
+build
+node_modules
+typings
