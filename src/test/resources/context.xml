@@ -34,7 +34,7 @@
     <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
     -->
     <Resource name="jdbc/feed" auth="Container" type="javax.sql.DataSource"
-                  username="root" password="hyperoffice"  driverClassName="com.mysql.jdbc.Driver"
+                  username="" password=""  driverClassName="com.mysql.jdbc.Driver"
                   url="jdbc:mysql://localhost:3306/newsfeed?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF8&amp;allowMultiQueries=true&amp;profileSQL=false&amp;sessionVariables=sql_mode='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_BACKSLASH_ESCAPES'&amp;serverTimezone=UTC"
     			  defaultTransactionIsolation="READ_UNCOMMITTED"
                   validationQuery="select 1"
