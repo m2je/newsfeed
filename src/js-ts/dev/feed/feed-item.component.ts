@@ -12,8 +12,26 @@ import {FeedItem} from "./feed-item";
             
         </article>
     `,
-    styleUrls: ['../../src/css/feed-item.css']
-    // inputs: ['weatherItem: item']
+    styles:[`
+
+    
+     h3{
+         margin:0 0 10px;
+         padding:0;
+         font-size:22px;
+     }
+     .info{
+         color:rgba(95,95,95,.51);
+         font-weight:700
+     }
+     .feed-element{
+            box-shadow:1px 1px 6px #ccc;
+            padding:10px;
+            margin:10px 0
+    }
+    `]
+
+
 })
 export class FeedItemComponent {
     @Input('item') feedItem: FeedItem;

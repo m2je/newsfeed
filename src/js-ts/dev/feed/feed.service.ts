@@ -19,7 +19,7 @@ export class FeedService
     addedFeedsAnnounced$=this.addedFeedsSource.asObservable();
 
     loadFeedItems(): Observable<FeedItem[]>{
-    let feeds$ =this._http.get('http://localhost:8080/api/feeds').
+    let feeds$ =this._http.get('./api/feeds').
         map(response=>this.mapFeeds(response))
             .catch(error => {
                 console.error(error);
@@ -35,7 +35,7 @@ export class FeedService
         let options = new RequestOptions({ headers: headers });
         let body=JSON.stringify(feedItem);
 
-        return this._http.post('http://localhost:8080/api/feeds',body,options)
+        return this._http.post('./api/feeds',body,options)
                .catch(error => {
                console.error(error);
                return Observable.throw(error.json())
