@@ -4,4 +4,4 @@ import {AppComponent} from "./app.component";
 import {HTTP_PROVIDERS} from "@angular/http";
 import {FeedService} from "./feed/feed.service";
 
-bootstrap(AppComponent,[HTTP_PROVIDERS, FeedService]);
+bootstrap(AppComponent, [HTTP_PROVIDERS, FeedService]);

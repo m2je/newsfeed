@@ -26,8 +26,8 @@ import {FeedItem} from "./feed-item";
                 </div>
             </form>
         </section>
-    `   ,
-    styles:[`
+    `,
+    styles: [`
             label {
                 display: inline-block;
                 width: 140px;
@@ -70,15 +70,15 @@ export class FeedAddComponent {
 
     data: any = {};
 
-    constructor(private _feedService:FeedService) {
+    constructor(private _feedService: FeedService) {
     }
 
     onSubmit(form: ControlGroup) {
         let feedItem = new FeedItem(form.value.publishDate, form.value.content);
-        this._feedService.createFeedItem(feedItem).toPromise().then(newFeedItem=>this.fireDataChange(newFeedItem));
+        this._feedService.createFeedItem(feedItem).toPromise().then(newFeedItem => this.fireDataChange(newFeedItem));
     }
 
-    fireDataChange(feedItem : FeedItem){
+    fireDataChange(feedItem: FeedItem) {
         this._feedService.fireItemAdded(feedItem);
     }
 

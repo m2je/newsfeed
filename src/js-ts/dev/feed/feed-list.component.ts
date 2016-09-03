@@ -24,14 +24,15 @@ export class FeedListComponent implements OnInit {
             });
     }
 
-    ngOnInit():any {
+    ngOnInit(): any {
         this.reload();
     }
 
-    reload(){
-        this._feedService.loadFeedItems().subscribe(items=> this.feedItems=items);
+    reload() {
+        this._feedService.loadFeedItems().subscribe(items => this.feedItems = items);
     }
-    handleItemChange(feedItem:FeedItem){
+
+    handleItemChange(feedItem: FeedItem) {
         this.reload();
     }
 }

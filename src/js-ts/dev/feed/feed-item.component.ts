@@ -1,4 +1,4 @@
-import {Component,Input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {FeedItem} from "./feed-item";
 
 @Component({
@@ -12,7 +12,7 @@ import {FeedItem} from "./feed-item";
             
         </article>
     `,
-    styles:[`
+    styles: [`
 
     
      h3{

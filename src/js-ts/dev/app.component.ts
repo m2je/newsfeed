@@ -10,7 +10,7 @@ import {FeedAddComponent} from "./feed/feed.add.component";
            <feed-list></feed-list>
         </div>
     `,
-    directives:[FeedListComponent,FeedAddComponent]
+    directives: [FeedListComponent, FeedAddComponent]
 })
 export class AppComponent {
 
