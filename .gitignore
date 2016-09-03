@@ -13,7 +13,7 @@
 /classes
 
 *.settings
-*.bat
+
 
 .idea/
 .idea/*.*

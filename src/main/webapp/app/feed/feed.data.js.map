@@ -1,0 +1,1 @@
+{"version":3,"sources":["app/feed/feed.data.ts"],"names":[],"mappings":";;;QACa,UAAU;;;;YAAV,wBAAA,UAAU,GAAe,EAAE,CAAA,CAAC","file":"app/feed/feed.data.js","sourcesContent":["import {FeedItem} from \"./feed-item\";\r\nexport const FEED_ITEMS: FeedItem[] = [];"],"sourceRoot":"/source/"}
