@@ -6,8 +6,8 @@ import {FeedAddComponent} from "./feed/feed.add.component";
     selector: 'my-app',
     template: `
         <div align="center">
-           <feed-add></feed-add>
            <feed-list></feed-list>
+           <feed-add></feed-add>
         </div>
     `,
     directives: [FeedListComponent, FeedAddComponent]

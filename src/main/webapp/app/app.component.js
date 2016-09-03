@@ -30,7 +30,7 @@ System.register(['@angular/core', "./feed/feed-list.component", "./feed/feed.add
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <div align=\"center\">\n           <feed-add></feed-add>\n           <feed-list></feed-list>\n        </div>\n    ",
+                        template: "\n        <div align=\"center\">\n           <feed-list></feed-list>\n           <feed-add></feed-add>\n        </div>\n    ",
                         directives: [feed_list_component_1.FeedListComponent, feed_add_component_1.FeedAddComponent]
                     }), 
                     __metadata('design:paramtypes', [])
